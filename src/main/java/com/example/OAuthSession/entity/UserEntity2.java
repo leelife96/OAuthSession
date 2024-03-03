@@ -5,17 +5,14 @@ import lombok.Data;
 
 @Entity
 @Data
-public class UserEntity {
-
+public class UserEntity2 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
+    @Column(unique = true) // username 중복 방지
+    private String username2;
 
-    private String username;
-
-
-    private String email;
-
+    private String password;
     private String role;
 }

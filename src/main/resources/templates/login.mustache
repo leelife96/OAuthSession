@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="submit"] {
+            width: 250px;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .social-buttons {
+
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .social-buttons a {
+            margin: 0 10px;
+        }
+
+        .image-container-google {
+            max-width: 200px;
+            max-height: 180px;
+        }
+
+        .image-container-naver {
+            max-width: 200px;
+            max-height: 180px;
+        }
+    </style>
+</head>
+<body>
+<h1>Login page</h1>
+<form action="/loginProc" method="post" name="loginForm">
+    <input id="username" type="text" name="username" placeholder="id"/>
+    <input id="password" type="password" name="password" placeholder="password"/>
+    <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
+    <input type="submit" value="login"/>
+</form>
+<div class="social-buttons">
+    <a href="/oauth2/authorization/naver">
+        <img src="images/btn_sitcknaver.png" class="image-container-naver">
+    </a><br>
+    <a href="/oauth2/authorization/google">
+        <img src="images/btn_google.png" class="image-container-google">
+    </a>
+</div>
+</body>
+</html>
