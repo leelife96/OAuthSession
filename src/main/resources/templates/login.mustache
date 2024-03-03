@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -9,7 +10,6 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-
         }
 
         h1 {
@@ -32,6 +32,7 @@
             border: 1px solid #ccc;
             border-radius: 5px;
             outline: none;
+            box-sizing: border-box; /* padding, border 포함한 크기 */
         }
 
         input[type="submit"] {
@@ -46,7 +47,6 @@
 
         .social-buttons {
 
-            justify-content: center;
             margin-top: 20px;
         }
 
@@ -54,14 +54,12 @@
             margin: 0 10px;
         }
 
-        .image-container-google {
-            max-width: 200px;
-            max-height: 180px;
-        }
-
+        .image-container-google,
         .image-container-naver {
             max-width: 200px;
             max-height: 180px;
+            width: 100%; /* 이미지 너비 100% */
+            height: auto; /* 이미지 높이 자동 조정 */
         }
     </style>
 </head>
@@ -72,6 +70,7 @@
     <input id="password" type="password" name="password" placeholder="password"/>
     <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
     <input type="submit" value="login"/>
+
 </form>
 <div class="social-buttons">
     <a href="/oauth2/authorization/naver">

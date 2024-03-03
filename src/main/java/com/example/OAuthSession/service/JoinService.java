@@ -2,9 +2,8 @@ package com.example.OAuthSession.service;
 
 import com.example.OAuthSession.dto.JoinDTO;
 
-import com.example.OAuthSession.entity.UserEntity2;
-
-import com.example.OAuthSession.repository.UserRepository2;
+import com.example.OAuthSession.entity.MemberEntity;
+import com.example.OAuthSession.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -12,25 +11,19 @@ import org.springframework.stereotype.Service;
 @Service
 public class JoinService {
 
-    @Autowired
-    private UserRepository2 userRepository2;
+   @Autowired
+   private MemberRepository memberRepository;
 
-    @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+   @Autowired
+   private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public void joinProcess(JoinDTO joinDTO){
+   public void joinProcess(JoinDTO joinDTO){
 
+      MemberEntity data = new MemberEntity();
+      data.setMembername(joinDTO.getMembername());
+      data.setPassword(bCryptPasswordEncoder.encode(joinDTO.getPassword()));
+      data.setRole("ROLE_USER");
 
-        // db에 이미 동일한 username을 가진 회원이 존재하는지?
-        boolean isUser = userRepository2.existsByUsername2(joinDTO.getUsername2());
-        if(isUser) {
-            return;
-        }
-
-        UserEntity2 data2 = new UserEntity2();
-        data2.setUsername2(joinDTO.getUsername2());
-        data2.setPassword(bCryptPasswordEncoder.encode(joinDTO.getPassword()));
-        data2.setRole("ROLE_ADMIN");
-        userRepository2.save(data2);
-    }
+      memberRepository.save(data);
+   }
 }

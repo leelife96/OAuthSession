@@ -20,7 +20,7 @@ public class JoinController {
 
     @PostMapping("/joinProc")
     public String joinProcess(JoinDTO joinDTO){
-        System.out.println(joinDTO.getUsername2());
+        System.out.println(joinDTO.getMembername());
         joinService.joinProcess(joinDTO);
 
         return "redirect:/login";

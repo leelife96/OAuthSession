@@ -39,9 +39,9 @@ public class SecurityConfig {
                       .permitAll()
                );
 
-        http
-                .logout((auth) -> auth.logoutUrl("/logout")
-                        .logoutSuccessUrl("/"));
+//        http
+//                .logout((auth) -> auth.logoutUrl("/logout")
+//                        .logoutSuccessUrl("/"));
 
         http
                 .httpBasic((basic) -> basic.disable());

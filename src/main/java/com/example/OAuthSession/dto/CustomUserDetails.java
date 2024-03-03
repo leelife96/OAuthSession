@@ -1,7 +1,7 @@
 package com.example.OAuthSession.dto;
 
-import com.example.OAuthSession.entity.UserEntity2;
-import com.example.OAuthSession.repository.UserRepository2;
+import com.example.OAuthSession.entity.MemberEntity;
+import com.example.OAuthSession.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,14 +11,14 @@ import java.util.Collection;
 
 public class CustomUserDetails implements UserDetails {
 
-    private UserEntity2 userEntity2;
+    private MemberEntity memberEntity;
 
-    public CustomUserDetails(UserEntity2 userEntity2){
-        this.userEntity2 = userEntity2;
+    public CustomUserDetails(MemberEntity memberEntity){
+        this.memberEntity = memberEntity;
     }
 
     @Autowired
-    private UserRepository2 userRepository2;
+    private MemberRepository memberRepository;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -29,7 +29,7 @@ public class CustomUserDetails implements UserDetails {
             @Override
             public String getAuthority() {
 
-                return userEntity2.getRole();
+                return memberEntity.getRole();
             }
         });
 
@@ -38,12 +38,12 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public String getPassword() {
-        return userEntity2.getPassword();
+        return memberEntity.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return userEntity2.getUsername2();
+        return memberEntity.getMembername();
     }
 
     @Override
